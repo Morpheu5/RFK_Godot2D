@@ -30,7 +30,7 @@ editor_draw_drag_margin = true
 margin_right = 80.0
 rect_min_size = Vector2( 80, 0 )
 
-[node name="TextureRect" parent="HUD/MarginContainer/HBoxContainer/ButtonContainer" index="0"]
+[node name="ActionButton" parent="HUD/MarginContainer/HBoxContainer/ButtonContainer" index="0"]
 margin_right = 80.0
 
 [node name="LabelContainer" parent="HUD/MarginContainer/HBoxContainer" index="1"]
