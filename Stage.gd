@@ -67,8 +67,8 @@ func load_nkis():
 	nkis.shuffle()
 
 func _ready():
-	$HUD/MarginContainer/HBoxContainer/ButtonContainer/ActionButton.visible = false
-	$HUD/MarginContainer/HBoxContainer/LabelContainer/MarginContainer/Label.visible = false
+#	$HUD/MarginContainer/HBoxContainer/ButtonContainer/ActionButton.visible = false
+	$HUD/MarginContainer/Label.visible = false
 	randomize()
 	load_nkis()
 	load_symbols_textures()
@@ -91,15 +91,15 @@ func _ready():
 
 func _on_Robot_approach_box() -> void:
 	print("* Robot sees a box")
-	$HUD/MarginContainer/HBoxContainer/ButtonContainer/ActionButton.visible = true
+#	$HUD/MarginContainer/HBoxContainer/ButtonContainer/ActionButton.visible = true
 
 func _on_Robot_leave_box() -> void:
 	print("* Robot leaves a box")
-	$HUD/MarginContainer/HBoxContainer/ButtonContainer/ActionButton.visible = false
-	$HUD/MarginContainer/HBoxContainer/LabelContainer/MarginContainer/Label.text = ""
-	$HUD/MarginContainer/HBoxContainer/LabelContainer/MarginContainer/Label.visible = false
+#	$HUD/MarginContainer/HBoxContainer/ButtonContainer/ActionButton.visible = false
+	$HUD/MarginContainer/Label.text = ""
+	$HUD/MarginContainer/Label.visible = false
 
 func _on_Actor_is_kitten(is_kitten, what_is) -> void:
 	print("<box> ", what_is)
-	$HUD/MarginContainer/HBoxContainer/LabelContainer/MarginContainer/Label.text = what_is
-	$HUD/MarginContainer/HBoxContainer/LabelContainer/MarginContainer/Label.visible = true
+	$HUD/MarginContainer/Label.text = what_is
+	$HUD/MarginContainer/Label.visible = true
