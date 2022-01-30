@@ -67,15 +67,27 @@ func load_nkis():
 	nkis.shuffle()
 
 func _ready():
-#	$HUD/MarginContainer/HBoxContainer/ButtonContainer/ActionButton.visible = false
 	$HUD/MarginContainer/Label.visible = false
 	randomize()
 	load_nkis()
 	load_symbols_textures()
 	
 	var box_scene = preload("res://Actors/MysteryBox.tscn")
-	var mystery_boxes_amt = 32
 	var center = Vector2(512, 300)
+	# MAKE KITTEN!
+	var kitten = box_scene.instance()
+	kitten.set_script(load("res://Actors/Kitten.gd"))
+	kitten.get_node("BaseSprite").modulate = Color(1,1,1,1)
+	kitten.get_node("SymbolSprite").texture = null
+	kitten.connect("is_kitten", self, "_on_Actor_is_kitten")
+	mystery_boxes.append(kitten)
+	var kitten_position = pick_box_position() + center
+	while !check_distance(kitten_position, 256) || (kitten_position.distance_to(center) < 128):
+		kitten_position += Vector2(rand_range(-1, 1), rand_range(-1, 1)) * rand_range(0, 32*4)
+	kitten.position = kitten_position + center
+	$Boxes.call_deferred("add_child", kitten)
+
+	var mystery_boxes_amt = 32
 	for i in range(mystery_boxes_amt):
 		var position = pick_box_position() + center
 		while !check_distance(position, 256) || (position.distance_to(center) < 128):
@@ -87,19 +99,27 @@ func _ready():
 		box.connect("is_kitten", self, "_on_Actor_is_kitten")
 		mystery_boxes.append(box)
 		box.position = position
-		$Boxes.call_deferred("add_child", box)
+		$Boxes.call_deferred("add_child", box)	
 
 func _on_Robot_approach_box() -> void:
-	print("* Robot sees a box")
-#	$HUD/MarginContainer/HBoxContainer/ButtonContainer/ActionButton.visible = true
+	# print("* Robot sees a box")
+	pass
 
 func _on_Robot_leave_box() -> void:
-	print("* Robot leaves a box")
-#	$HUD/MarginContainer/HBoxContainer/ButtonContainer/ActionButton.visible = false
+	# print("* Robot leaves a box")
 	$HUD/MarginContainer/Label.text = ""
 	$HUD/MarginContainer/Label.visible = false
 
 func _on_Actor_is_kitten(is_kitten, what_is) -> void:
-	print("<box> ", what_is)
-	$HUD/MarginContainer/Label.text = what_is
-	$HUD/MarginContainer/Label.visible = true
+	# print("<box> ", what_is)
+	if is_kitten:
+		get_tree().change_scene("res://GUI/WinScreen.tscn")
+	else:
+		$HUD/MarginContainer/Label.text = what_is
+		$HUD/MarginContainer/Label.visible = true
+
+func quit() -> void:
+	print("QUITTONE")
+
+func restart():
+	get_tree().reload_current_scene()

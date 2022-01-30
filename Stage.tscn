@@ -26,22 +26,6 @@ editor_draw_drag_margin = true
 
 [node name="HUD" parent="." instance=ExtResource( 3 )]
 
-[node name="ButtonContainer" parent="HUD/MarginContainer/HBoxContainer" index="0"]
-margin_right = 80.0
-rect_min_size = Vector2( 80, 0 )
-
-[node name="ActionButton" parent="HUD/MarginContainer/HBoxContainer/ButtonContainer" index="0"]
-margin_right = 80.0
-
-[node name="LabelContainer" parent="HUD/MarginContainer/HBoxContainer" index="1"]
-margin_left = 84.0
-
-[node name="MarginContainer" parent="HUD/MarginContainer/HBoxContainer/LabelContainer" index="0"]
-margin_right = 908.0
-
-[node name="Label" parent="HUD/MarginContainer/HBoxContainer/LabelContainer/MarginContainer" index="0"]
-margin_right = 908.0
-
 [connection signal="leave_box" from="Robot" to="." method="_on_Robot_leave_box"]
 [connection signal="see_box" from="Robot" to="." method="_on_Robot_approach_box"]
 

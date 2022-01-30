@@ -6,10 +6,11 @@
 [node name="HUD" type="CanvasLayer"]
 
 [node name="MarginContainer" type="MarginContainer" parent="."]
-anchor_top = 1.0
+anchor_top = 0.88
 anchor_right = 1.0
 anchor_bottom = 1.0
 margin_left = 64.0
+margin_top = -40.0001
 margin_right = -64.0
 margin_bottom = -32.0
 grow_vertical = 0
@@ -22,12 +23,12 @@ __meta__ = {
 
 [node name="Label" type="Label" parent="MarginContainer"]
 margin_right = 896.0
-margin_bottom = 257.0
+margin_bottom = 80.0
 grow_vertical = 0
 rect_min_size = Vector2( 320, 0 )
 size_flags_vertical = 3
 theme = ExtResource( 2 )
-text = "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua."
+text = "A single line"
 valign = 2
 autowrap = true
 

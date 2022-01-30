@@ -34,7 +34,7 @@ func is_kitten():
 
 func _process(delta):
 	if Input.is_action_just_released("ask_kitten") and active_actor != null:
-		print("<robot> Hey, ", active_actor, "... are you kitten?")
+		# print("<robot> Hey, ", active_actor, "... are you kitten?")
 		active_actor.is_kitten()
 		if $ActionButton.visible:
 			$ActionButton.visible = false
@@ -45,7 +45,7 @@ func _on_BoxDetector_body_entered(body: Actor) -> void:
 	active_actor = body
 	emit_signal("see_box")
 	$ActionButton.visible = true
-	print("<robot> I see a mystery box...")
+	# print("<robot> I see a mystery box...")
 
 func _on_BoxDetector_body_exited(body: Actor) -> void:
 	if body == self:
@@ -53,7 +53,8 @@ func _on_BoxDetector_body_exited(body: Actor) -> void:
 	active_actor = null
 	emit_signal("leave_box")
 	$ActionButton.visible = false
-	print("<robot> KHTXBAI")
+	# print("<robot> KHTXBAI")
 
 func _on_Robot_input_event(viewport: Node, event: InputEvent, shape_idx: int) -> void:
-	print("------", event.as_text())
+	# print(event.as_text())
+	pass
