@@ -2,15 +2,15 @@
 
 importer="texture"
 type="StreamTexture"
-path="res://.import/mysterybox.png-2648d046f8cd53fbbfaaee417d60e666.stex"
+path="res://.import/mysterybox_pushed.png-328a6460a495a7b6de0792bd339af263.stex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/sprites/mysterybox.png"
-dest_files=[ "res://.import/mysterybox.png-2648d046f8cd53fbbfaaee417d60e666.stex" ]
+source_file="res://assets/sprites/mysterybox_pushed.png"
+dest_files=[ "res://.import/mysterybox_pushed.png-328a6460a495a7b6de0792bd339af263.stex" ]
 
 [params]
 

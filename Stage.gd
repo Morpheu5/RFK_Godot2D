@@ -122,4 +122,4 @@ func quit() -> void:
 	print("QUITTONE")
 
 func restart():
-	get_tree().reload_current_scene()
+	self._ready()

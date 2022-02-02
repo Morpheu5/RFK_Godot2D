@@ -2,15 +2,15 @@
 
 importer="texture"
 type="StreamTexture"
-path="res://.import/mysterybox.png-2648d046f8cd53fbbfaaee417d60e666.stex"
+path="res://.import/robot_top.png-32ace97da2db729ddf623c600c1edf3c.stex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/sprites/mysterybox.png"
-dest_files=[ "res://.import/mysterybox.png-2648d046f8cd53fbbfaaee417d60e666.stex" ]
+source_file="res://assets/sprites/robot_top.png"
+dest_files=[ "res://.import/robot_top.png-32ace97da2db729ddf623c600c1edf3c.stex" ]
 
 [params]
 
@@ -20,7 +20,7 @@ compress/hdr_mode=0
 compress/bptc_ldr=0
 compress/normal_map=0
 flags/repeat=0
-flags/filter=false
+flags/filter=true
 flags/mipmaps=false
 flags/anisotropic=false
 flags/srgb=2

@@ -1,8 +1,9 @@
-[gd_scene load_steps=29 format=2]
+[gd_scene load_steps=45 format=2]
 
 [ext_resource path="res://GUI/WinScreen.gd" type="Script" id=1]
 [ext_resource path="res://GUI/default_theme.tres" type="Theme" id=2]
 [ext_resource path="res://assets/sprites/kitten2.png" type="Texture" id=3]
+[ext_resource path="res://assets/sprites/robot_win.png" type="Texture" id=4]
 
 [sub_resource type="AtlasTexture" id=1]
 atlas = ExtResource( 3 )
@@ -108,6 +109,70 @@ animations = [ {
 "speed": 8.0
 } ]
 
+[sub_resource type="AtlasTexture" id=26]
+atlas = ExtResource( 4 )
+region = Rect2( 0, 0, 64, 64 )
+
+[sub_resource type="AtlasTexture" id=27]
+atlas = ExtResource( 4 )
+region = Rect2( 64, 0, 64, 64 )
+
+[sub_resource type="AtlasTexture" id=28]
+atlas = ExtResource( 4 )
+region = Rect2( 128, 0, 64, 64 )
+
+[sub_resource type="AtlasTexture" id=29]
+atlas = ExtResource( 4 )
+region = Rect2( 192, 0, 64, 64 )
+
+[sub_resource type="AtlasTexture" id=30]
+atlas = ExtResource( 4 )
+region = Rect2( 256, 0, 64, 64 )
+
+[sub_resource type="AtlasTexture" id=31]
+atlas = ExtResource( 4 )
+region = Rect2( 320, 0, 64, 64 )
+
+[sub_resource type="AtlasTexture" id=32]
+atlas = ExtResource( 4 )
+region = Rect2( 384, 0, 64, 64 )
+
+[sub_resource type="AtlasTexture" id=33]
+atlas = ExtResource( 4 )
+region = Rect2( 0, 64, 64, 64 )
+
+[sub_resource type="AtlasTexture" id=34]
+atlas = ExtResource( 4 )
+region = Rect2( 64, 64, 64, 64 )
+
+[sub_resource type="AtlasTexture" id=35]
+atlas = ExtResource( 4 )
+region = Rect2( 128, 64, 64, 64 )
+
+[sub_resource type="AtlasTexture" id=36]
+atlas = ExtResource( 4 )
+region = Rect2( 192, 64, 64, 64 )
+
+[sub_resource type="AtlasTexture" id=37]
+atlas = ExtResource( 4 )
+region = Rect2( 256, 64, 64, 64 )
+
+[sub_resource type="AtlasTexture" id=38]
+atlas = ExtResource( 4 )
+region = Rect2( 320, 64, 64, 64 )
+
+[sub_resource type="AtlasTexture" id=39]
+atlas = ExtResource( 4 )
+region = Rect2( 384, 64, 64, 64 )
+
+[sub_resource type="SpriteFrames" id=40]
+animations = [ {
+"frames": [ SubResource( 26 ), SubResource( 27 ), SubResource( 28 ), SubResource( 29 ), SubResource( 30 ), SubResource( 31 ), SubResource( 32 ), SubResource( 33 ), SubResource( 34 ), SubResource( 35 ), SubResource( 36 ), SubResource( 37 ), SubResource( 38 ), SubResource( 39 ) ],
+"loop": true,
+"name": "default",
+"speed": 8.0
+} ]
+
 [node name="WinScreen" type="CanvasLayer"]
 script = ExtResource( 1 )
 
@@ -115,7 +180,7 @@ script = ExtResource( 1 )
 anchor_right = 1.0
 anchor_bottom = 1.0
 margin_left = 64.0
-margin_top = 64.0
+margin_top = 256.0
 margin_right = -64.0
 margin_bottom = -64.0
 __meta__ = {
@@ -124,30 +189,35 @@ __meta__ = {
 
 [node name="CenterContainer" type="CenterContainer" parent="MarginContainer"]
 margin_right = 896.0
-margin_bottom = 472.0
+margin_bottom = 286.0
 
 [node name="VBoxContainer" type="VBoxContainer" parent="MarginContainer/CenterContainer"]
 margin_left = 194.0
-margin_top = 93.0
 margin_right = 702.0
-margin_bottom = 379.0
+margin_bottom = 286.0
 size_flags_horizontal = 3
 size_flags_vertical = 3
 custom_constants/separation = 32
 alignment = 1
 
 [node name="CenterContainer" type="CenterContainer" parent="MarginContainer/CenterContainer/VBoxContainer"]
-anchor_right = 1.0
-anchor_bottom = 1.0
+margin_right = 508.0
 size_flags_horizontal = 15
 size_flags_vertical = 15
 theme = ExtResource( 2 )
 
 [node name="Kitten2" type="AnimatedSprite" parent="MarginContainer/CenterContainer/VBoxContainer/CenterContainer"]
-position = Vector2( 395, -22 )
+position = Vector2( 365, -20.256 )
 scale = Vector2( 4, 4 )
 frames = SubResource( 25 )
-frame = 2
+frame = 8
+playing = true
+
+[node name="RobotWin" type="AnimatedSprite" parent="MarginContainer/CenterContainer/VBoxContainer/CenterContainer"]
+position = Vector2( 173, -76 )
+scale = Vector2( 4, 4 )
+frames = SubResource( 40 )
+frame = 10
 playing = true
 
 [node name="PanelContainer" type="PanelContainer" parent="MarginContainer/CenterContainer/VBoxContainer"]
