@@ -70,7 +70,7 @@ alignment = 1
 margin_left = 392.0
 margin_right = 536.0
 margin_bottom = 85.0
-keep_pressed_outside = true
+theme = ExtResource( 1 )
 text = "Play"
 
 [connection signal="pressed" from="PanelContainer/VBoxContainer/HBoxContainer/Button" to="." method="_on_Button_pressed"]
