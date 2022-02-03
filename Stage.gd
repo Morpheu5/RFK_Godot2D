@@ -6,6 +6,10 @@ var symbols = []
 onready var nki_file = "res://assets/nkis.txt"
 var nkis = []
 
+const MIN_DISTANCE = 128*1.5
+const MIN_DISTANCE_FROM_CENTER = 128*1.5
+const WIGGLE_RANGE = 32
+
 func check_distance(p: Vector2, min_distance: float):
 	for box in mystery_boxes:
 		var d = p.distance_to(box.position)
@@ -63,24 +67,26 @@ func _ready():
 	
 	var box_scene = preload("res://Actors/MysteryBox.tscn")
 	var center = Vector2(512, 300)
+
 	# MAKE KITTEN!
 	var kitten = box_scene.instance()
 	kitten.set_script(load("res://Actors/Kitten.gd"))
-	kitten.get_node("BaseSprite").modulate = Color(1,1,1,1)
-	kitten.get_node("SymbolSprite").texture = null
+	kitten.get_node("BaseSprite").modulate = Color(Global.colors[randi() % Global.colors.size()])
+	kitten.get_node("SymbolSprite").texture = symbols.pop_front()
 	kitten.connect("is_kitten", self, "_on_Actor_is_kitten")
 	mystery_boxes.append(kitten)
 	var kitten_position = pick_box_position() + center
-	while !check_distance(kitten_position, 256) || (kitten_position.distance_to(center) < 128):
-		kitten_position += Vector2(rand_range(-1, 1), rand_range(-1, 1)) * rand_range(0, 32*4)
+	while !check_distance(kitten_position, MIN_DISTANCE) || (kitten_position.distance_to(center) < MIN_DISTANCE_FROM_CENTER):
+		kitten_position += Vector2(rand_range(-1, 1), rand_range(-1, 1)) * rand_range(WIGGLE_RANGE/2, WIGGLE_RANGE)
 	kitten.position = kitten_position + center
 	$Boxes.call_deferred("add_child", kitten)
 
+	# MAKE MYSTERY BOXES!
 	var mystery_boxes_amt = 32
 	for i in range(mystery_boxes_amt):
 		var position = pick_box_position() + center
-		while !check_distance(position, 256) || (position.distance_to(center) < 128):
-			position += Vector2(rand_range(-1, 1), rand_range(-1, 1)) * rand_range(0, 32*4)
+		while !check_distance(position, MIN_DISTANCE) || (position.distance_to(center) < MIN_DISTANCE_FROM_CENTER):
+			position += Vector2(rand_range(-1, 1), rand_range(-1, 1)) * rand_range(WIGGLE_RANGE/2, WIGGLE_RANGE)
 		var box = box_scene.instance()
 		box.get_node("BaseSprite").modulate = Color(Global.colors[i % Global.colors.size()])
 		box.get_node("SymbolSprite").texture = symbols[i % symbols.size()]
@@ -89,20 +95,22 @@ func _ready():
 		mystery_boxes.append(box)
 		box.position = position
 		$Boxes.call_deferred("add_child", box)
-	# Give the boxes a little extra shake for good measure
-	mystery_boxes.shuffle()
 
 func _on_Robot_approach_box() -> void:
-	# print("* Robot sees a box")
-	pass
+	if OS.is_debug_build():
+		print("* Robot sees a box")
 
 func _on_Robot_leave_box() -> void:
-	# print("* Robot leaves a box")
+	if OS.is_debug_build():
+		print("* Robot leaves the box")
+
 	$HUD/MarginContainer/Label.text = ""
 	$HUD/MarginContainer/Label.visible = false
 
 func _on_Actor_is_kitten(is_kitten, what_is) -> void:
-	# print("<box> ", what_is)
+	if OS.is_debug_build():
+		print("<box> ", what_is)
+
 	if is_kitten:
 		get_tree().change_scene("res://GUI/WinScreen.tscn")
 	else:

@@ -1,6 +1,5 @@
 extends Actor
 
-signal ask_kitten
 signal see_box
 signal leave_box
 
@@ -32,9 +31,10 @@ func get_direction() -> Vector2:
 func is_kitten():
 	emit_signal("is_kitten", false, "No, silly, I'm yourself!")
 
-func _process(delta):
+func _process(_delta):
 	if Input.is_action_just_released("ask_kitten") and active_actor != null:
-		# print("<robot> Hey, ", active_actor, "... are you kitten?")
+		if OS.is_debug_build():
+			print("<robot> Hey, ", active_actor, "... are you kitten?")
 		active_actor.is_kitten()
 		if $ActionButton.visible:
 			$ActionButton.visible = false
@@ -45,7 +45,8 @@ func _on_BoxDetector_body_entered(body: Actor) -> void:
 	active_actor = body
 	emit_signal("see_box")
 	$ActionButton.visible = true
-	# print("<robot> I see a mystery box...")
+	if OS.is_debug_build():
+		print("<robot> I see a mystery box...")
 
 func _on_BoxDetector_body_exited(body: Actor) -> void:
 	if body == self:
@@ -53,8 +54,5 @@ func _on_BoxDetector_body_exited(body: Actor) -> void:
 	active_actor = null
 	emit_signal("leave_box")
 	$ActionButton.visible = false
-	# print("<robot> KHTXBAI")
-
-func _on_Robot_input_event(viewport: Node, event: InputEvent, shape_idx: int) -> void:
-	# print(event.as_text())
-	pass
+	if OS.is_debug_build():
+		print("<robot> KHTXBAI")
