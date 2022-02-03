@@ -36,6 +36,10 @@ config/name="Robot Finds Kitten 2D"
 run/main_scene="res://Start.tscn"
 config/icon="res://icon.png"
 
+[autoload]
+
+Global="*res://Global.gd"
+
 [display]
 
 window/size/test_width=1024
@@ -45,6 +49,14 @@ window/energy_saving/keep_screen_on=false
 [global]
 
 screen=false
+filter=false
+
+[importer_defaults]
+
+texture={
+"detect_3d": false,
+"flags/filter": false
+}
 
 [input]
 

@@ -34,14 +34,14 @@ __meta__ = {
 margin_left = 16.0
 margin_top = 24.0
 margin_right = 944.0
-margin_bottom = 477.0
+margin_bottom = 509.0
 size_flags_horizontal = 3
 size_flags_vertical = 2
 alignment = 1
 
 [node name="RichTextLabel" type="RichTextLabel" parent="PanelContainer/VBoxContainer"]
 margin_right = 928.0
-margin_bottom = 364.0
+margin_bottom = 396.0
 size_flags_horizontal = 3
 size_flags_vertical = 15
 theme = ExtResource( 1 )
@@ -51,18 +51,18 @@ bbcode_text = "robotfindskitten v1.7320508.406 by the illustrious Leonard Richar
 Written originally for the Nerth Pork robotfindskitten contest
 Adapted for Godot by Andrea Franceschini 2022
 
-In this game, you are robot > [img=32]res://assets/sprites/robot_top_single.png[/img] < Your job is to find kitten. This task is complicated by the existence of various things which are not kitten. Robot must touch items to determine if they are kitten or not. The game ends when robotfindskitten."
+In this game, you are robot > [img=32]res://assets/sprites/robot_top_single.png[/img] < Your job is to find kitten. This task is complicated by the existence of various things which are not kitten. Robot must touch items (use the space bar) to determine if they are kitten or not. The game ends when robotfindskitten."
 text = "robotfindskitten v1.7320508.406 by the illustrious Leonard Richardson (C) 1997, 2000
 Written originally for the Nerth Pork robotfindskitten contest
 Adapted for Godot by Andrea Franceschini 2022
 
-In this game, you are robot >  < Your job is to find kitten. This task is complicated by the existence of various things which are not kitten. Robot must touch items to determine if they are kitten or not. The game ends when robotfindskitten."
+In this game, you are robot >  < Your job is to find kitten. This task is complicated by the existence of various things which are not kitten. Robot must touch items (use the space bar) to determine if they are kitten or not. The game ends when robotfindskitten."
 fit_content_height = true
 
 [node name="HBoxContainer" type="HBoxContainer" parent="PanelContainer/VBoxContainer"]
-margin_top = 368.0
+margin_top = 400.0
 margin_right = 928.0
-margin_bottom = 453.0
+margin_bottom = 485.0
 size_flags_vertical = 3
 alignment = 1
 
@@ -70,6 +70,7 @@ alignment = 1
 margin_left = 392.0
 margin_right = 536.0
 margin_bottom = 85.0
+keep_pressed_outside = true
 text = "Play"
 
 [connection signal="pressed" from="PanelContainer/VBoxContainer/HBoxContainer/Button" to="." method="_on_Button_pressed"]

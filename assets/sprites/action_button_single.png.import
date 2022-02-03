@@ -2,15 +2,15 @@
 
 importer="texture"
 type="StreamTexture"
-path="res://.import/robot.png-356b5ed8064100efd052db73fe3444a0.stex"
+path="res://.import/action_button_single.png-592379f65557a852b8a7dc515cdf3d9b.stex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/sprites/robot.png"
-dest_files=[ "res://.import/robot.png-356b5ed8064100efd052db73fe3444a0.stex" ]
+source_file="res://assets/sprites/action_button_single.png"
+dest_files=[ "res://.import/action_button_single.png-592379f65557a852b8a7dc515cdf3d9b.stex" ]
 
 [params]
 
@@ -20,7 +20,7 @@ compress/hdr_mode=0
 compress/bptc_ldr=0
 compress/normal_map=0
 flags/repeat=0
-flags/filter=true
+flags/filter=false
 flags/mipmaps=false
 flags/anisotropic=false
 flags/srgb=2

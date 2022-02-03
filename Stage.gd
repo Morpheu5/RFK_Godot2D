@@ -6,25 +6,6 @@ var symbols = []
 onready var nki_file = "res://assets/nkis.txt"
 var nkis = []
 
-const colors = [
-	"#f44336",
-	"#e81e63",
-	"#9c27b0", 
-	"#673ab7", 
-	"#3f51b5",
-	"#2196f3", 
-	"#03a9f4",
-	"#00bcd4",
-	"#009688",
-	"#4caf50",
-	"#8bc34a", 
-	"#cddc39", 
-	"#ffeb3b", 
-	"#ffc107",
-	"#ff9800",
-	"#ff5722"
-]
-
 func check_distance(p: Vector2, min_distance: float):
 	for box in mystery_boxes:
 		var d = p.distance_to(box.position)
@@ -39,7 +20,9 @@ func pick_box_position():
 
 func list_symbols():
 	var dir = Directory.new()
-	if dir.open("res://assets/symbols/") == OK:
+	print(dir.get_current_dir())
+	if dir.open("res://assets/symbols") == OK:
+		print(dir.get_current_dir())
 		dir.list_dir_begin()
 		var file_names = []
 		var file_name = dir.get_next()
@@ -52,11 +35,12 @@ func list_symbols():
 		print("An error occurred while loading the symbols.")
 		return []
 
-func load_symbols_textures():
-	var l = list_symbols()
-	for n in l:
-		symbols.append(ResourceLoader.load("res://assets/symbols/" + n))
-	symbols.shuffle()
+#func load_symbols_textures():
+#	var l = list_symbols()
+#	for n in l:
+#		var fn = "res://assets/symbols/" + n
+#		symbols.append(load(fn))
+#	symbols.shuffle()
 
 func load_nkis():
 	var f = File.new()
@@ -69,8 +53,13 @@ func load_nkis():
 func _ready():
 	$HUD/MarginContainer/Label.visible = false
 	randomize()
+	var Global = get_node("/root/Global")
+	# load_symbols_textures()
+	symbols = Global.symbols
+	
+	# So, loading PNGs on the fly is not ok, but a random txt file gets bundled
+	# no questions asked? Ok, then...
 	load_nkis()
-	load_symbols_textures()
 	
 	var box_scene = preload("res://Actors/MysteryBox.tscn")
 	var center = Vector2(512, 300)
@@ -93,13 +82,15 @@ func _ready():
 		while !check_distance(position, 256) || (position.distance_to(center) < 128):
 			position += Vector2(rand_range(-1, 1), rand_range(-1, 1)) * rand_range(0, 32*4)
 		var box = box_scene.instance()
-		box.get_node("BaseSprite").modulate = Color(colors[i % colors.size()])
+		box.get_node("BaseSprite").modulate = Color(Global.colors[i % Global.colors.size()])
 		box.get_node("SymbolSprite").texture = symbols[i % symbols.size()]
 		box.what = nkis[i % nkis.size()]
 		box.connect("is_kitten", self, "_on_Actor_is_kitten")
 		mystery_boxes.append(box)
 		box.position = position
-		$Boxes.call_deferred("add_child", box)	
+		$Boxes.call_deferred("add_child", box)
+	# Give the boxes a little extra shake for good measure
+	mystery_boxes.shuffle()
 
 func _on_Robot_approach_box() -> void:
 	# print("* Robot sees a box")
