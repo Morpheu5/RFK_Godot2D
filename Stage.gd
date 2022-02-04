@@ -3,7 +3,6 @@ extends Node2D
 
 var mystery_boxes = []
 var symbols = []
-onready var nki_file = "res://assets/nkis.txt"
 var nkis = []
 
 const MIN_DISTANCE = 128*1.5
@@ -48,14 +47,14 @@ func list_symbols():
 
 func load_nkis():
 	var f = File.new()
-	f.open(nki_file, File.READ)
+	f.open("res://assets/nkis.txt", File.READ)
 	while !f.eof_reached():
 		nkis.append(f.get_line())
 	f.close()
 	nkis.shuffle()
 
 func _ready():
-	$HUD/MarginContainer/Label.visible = false
+	$HUD/PanelContainer.visible = false
 	randomize()
 	var Global = get_node("/root/Global")
 	# load_symbols_textures()
@@ -104,8 +103,8 @@ func _on_Robot_leave_box() -> void:
 	if OS.is_debug_build():
 		print("* Robot leaves the box")
 
-	$HUD/MarginContainer/Label.text = ""
-	$HUD/MarginContainer/Label.visible = false
+	$HUD/PanelContainer/Label.text = ""
+	$HUD/PanelContainer.visible = false
 
 func _on_Actor_is_kitten(is_kitten, what_is) -> void:
 	if OS.is_debug_build():
@@ -114,11 +113,5 @@ func _on_Actor_is_kitten(is_kitten, what_is) -> void:
 	if is_kitten:
 		get_tree().change_scene("res://GUI/WinScreen.tscn")
 	else:
-		$HUD/MarginContainer/Label.text = what_is
-		$HUD/MarginContainer/Label.visible = true
-
-func quit() -> void:
-	print("QUITTONE")
-
-func restart():
-	self._ready()
+		$HUD/PanelContainer/Label.text = what_is
+		$HUD/PanelContainer.visible = true
