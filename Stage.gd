@@ -94,6 +94,27 @@ func _ready():
 		mystery_boxes.append(box)
 		box.position = position
 		$Boxes.call_deferred("add_child", box)
+	
+	# Gotta do that bounding box dance here...
+	var min_x = INF
+	var max_x = -INF
+	var min_y = INF
+	var max_y = -INF
+	for box in mystery_boxes:
+		if min_x > box.position.x:
+			min_x = box.position.x
+		if min_y > box.position.y:
+			min_y = box.position.y
+		if max_x < box.position.x:
+			max_x = box.position.x
+		if max_y < box.position.y:
+			max_y = box.position.y
+	# ... and set the autotiles accordingly.
+	for x in range(int(min_x/64)-3, int(max_x/64)+3):
+		for y in range(int(min_y/64)-3, int(max_y/64)+3):
+			$TileMap.set_cell(x, y, 0)
+	# Don't forget to give them a shake otherwise they won't bind correctly.
+	$TileMap.update_bitmask_region()
 
 func _on_Robot_approach_box() -> void:
 	if OS.is_debug_build():
