@@ -8,8 +8,11 @@ var angle: = 0.0
 var angular_speed: = 1.5
 var active_actor: Actor = null
 
+onready var leave_timer = $LeaveTimer
+
 func _ready():
-	$ActionButton.visible = false
+	leave_timer.set_wait_time(1)
+	pass
 
 func _physics_process(delta: float) -> void:
 	angle += Input.get_action_strength("move_right") - Input.get_action_strength("move_left")
@@ -36,23 +39,26 @@ func _process(_delta):
 		if OS.is_debug_build():
 			print("<robot> Hey, ", active_actor, "... are you kitten?")
 		active_actor.is_kitten()
-		if $ActionButton.visible:
-			$ActionButton.visible = false
 
 func _on_BoxDetector_body_entered(body: Actor) -> void:
 	if body == self:
 		return
-	active_actor = body
-	emit_signal("see_box")
-	$ActionButton.visible = true
+		
 	if OS.is_debug_build():
 		print("<robot> I see a mystery box...")
+
+	leave_timer.stop()
+	active_actor = body
+	body.is_kitten()
+	emit_signal("see_box")
 
 func _on_BoxDetector_body_exited(body: Actor) -> void:
 	if body == self:
 		return
+	leave_timer.start(1.0)
+
+func _on_LeaveTimer_timeout():
 	active_actor = null
 	emit_signal("leave_box")
-	$ActionButton.visible = false
 	if OS.is_debug_build():
 		print("<robot> KHTXBAI")

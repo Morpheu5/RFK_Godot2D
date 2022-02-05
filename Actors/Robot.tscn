@@ -1,8 +1,7 @@
-[gd_scene load_steps=11 format=2]
+[gd_scene load_steps=10 format=2]
 
 [ext_resource path="res://assets/sprites/robot_top.png" type="Texture" id=1]
 [ext_resource path="res://Actors/Robot.gd" type="Script" id=2]
-[ext_resource path="res://assets/sprites/action_button.tres" type="SpriteFrames" id=3]
 
 [sub_resource type="AtlasTexture" id=6]
 atlas = ExtResource( 1 )
@@ -28,9 +27,8 @@ animations = [ {
 "speed": 5.0
 } ]
 
-[sub_resource type="CircleShape2D" id=4]
-resource_local_to_scene = true
-radius = 32.0156
+[sub_resource type="RectangleShape2D" id=10]
+extents = Vector2( 28, 4 )
 
 [sub_resource type="RectangleShape2D" id=5]
 extents = Vector2( 28, 28 )
@@ -44,19 +42,17 @@ animation = "robot"
 frame = 1
 
 [node name="BoxDetector" type="Area2D" parent="RobotSprite"]
-position = Vector2( 0, -64 )
+position = Vector2( 0, -32 )
 
 [node name="BoxDetectorShape" type="CollisionShape2D" parent="RobotSprite/BoxDetector"]
-shape = SubResource( 4 )
+shape = SubResource( 10 )
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 shape = SubResource( 5 )
 
-[node name="ActionButton" type="AnimatedSprite" parent="."]
-position = Vector2( -64, -64 )
-frames = ExtResource( 3 )
-frame = 1
-playing = true
+[node name="LeaveTimer" type="Timer" parent="."]
+one_shot = true
 
 [connection signal="body_entered" from="RobotSprite/BoxDetector" to="." method="_on_BoxDetector_body_entered"]
 [connection signal="body_exited" from="RobotSprite/BoxDetector" to="." method="_on_BoxDetector_body_exited"]
+[connection signal="timeout" from="LeaveTimer" to="." method="_on_LeaveTimer_timeout"]

@@ -54,7 +54,7 @@ func load_nkis():
 	nkis.shuffle()
 
 func _ready():
-	$HUD/PanelContainer.visible = false
+	$HUD/PanelContainer.modulate = Color(1,1,1,0)
 	randomize()
 	var Global = get_node("/root/Global")
 	# load_symbols_textures()
@@ -124,8 +124,7 @@ func _on_Robot_leave_box() -> void:
 	if OS.is_debug_build():
 		print("* Robot leaves the box")
 
-	$HUD/PanelContainer/Label.text = ""
-	$HUD/PanelContainer.visible = false
+	$HUD.hide_panel()
 
 func _on_Actor_is_kitten(is_kitten, what_is) -> void:
 	if OS.is_debug_build():
@@ -134,5 +133,4 @@ func _on_Actor_is_kitten(is_kitten, what_is) -> void:
 	if is_kitten:
 		get_tree().change_scene("res://GUI/WinScreen.tscn")
 	else:
-		$HUD/PanelContainer/Label.text = what_is
-		$HUD/PanelContainer.visible = true
+		$HUD.show_panel(what_is)
