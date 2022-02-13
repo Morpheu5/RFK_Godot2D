@@ -1,7 +1,7 @@
 extends KinematicBody2D
 class_name Actor
 
-signal is_kitten(is_kitten, what_is)
+signal is_kitten(is_kitten, what)
 
 var velocity := Vector2.ZERO
 

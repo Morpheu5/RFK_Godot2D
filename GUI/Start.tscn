@@ -1,7 +1,7 @@
 [gd_scene load_steps=6 format=2]
 
 [ext_resource path="res://GUI/default_theme.tres" type="Theme" id=1]
-[ext_resource path="res://Start.gd" type="Script" id=2]
+[ext_resource path="res://GUI/Start.gd" type="Script" id=2]
 [ext_resource path="res://assets/animations/Fader.tscn" type="PackedScene" id=3]
 
 [sub_resource type="DynamicFontData" id=3]

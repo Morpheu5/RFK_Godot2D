@@ -1,5 +1,6 @@
 extends Node2D
 
+const WinScreen = preload("res://GUI/WinScreen.tscn")
 
 var mystery_boxes = []
 var symbols = []
@@ -38,13 +39,6 @@ func list_symbols():
 		print("An error occurred while loading the symbols.")
 		return []
 
-#func load_symbols_textures():
-#	var l = list_symbols()
-#	for n in l:
-#		var fn = "res://assets/symbols/" + n
-#		symbols.append(load(fn))
-#	symbols.shuffle()
-
 func load_nkis():
 	var f = File.new()
 	f.open("res://assets/nkis.txt", File.READ)
@@ -58,7 +52,6 @@ func _ready():
 	$HUD/PanelContainer.modulate = Color(1,1,1,0)
 	randomize()
 	var Global = get_node("/root/Global")
-	# load_symbols_textures()
 	symbols = Global.symbols
 	
 	# So, loading PNGs on the fly is not ok, but a random txt file gets bundled
@@ -70,7 +63,7 @@ func _ready():
 
 	# MAKE KITTEN!
 	var kitten = box_scene.instance()
-	kitten.set_script(load("res://Actors/Kitten.gd"))
+	kitten.set_script(preload("res://Actors/Kitten.gd"))
 	kitten.get_node("BaseSprite").modulate = Color(Global.colors[randi() % Global.colors.size()])
 	kitten.get_node("SymbolSprite").texture = symbols.pop_front()
 	kitten.connect("is_kitten", self, "_on_Actor_is_kitten")
@@ -128,16 +121,11 @@ func _on_Robot_leave_box() -> void:
 
 	$HUD.hide_panel()
 
-func _on_Actor_is_kitten(is_kitten, what_is) -> void:
+func _on_Actor_is_kitten(is_kitten, what) -> void:
 	if OS.is_debug_build():
-		print("<box> ", what_is)
+		print("<box> ", what)
 
 	if is_kitten:
-		$HUD/Fader.fade_out()
+		self.add_child(WinScreen.instance())
 	else:
-		$HUD.show_panel(what_is)
-
-
-func _on_Fader_fade_finished(anim_name: String) -> void:
-	if anim_name == "fade_out":
-		get_tree().change_scene("res://GUI/WinScreen.tscn")
+		$HUD.show_panel(what)
