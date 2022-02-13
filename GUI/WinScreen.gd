@@ -1,14 +1,18 @@
 extends CanvasLayer
 
+
 func _ready():
 	$AnimationPlayer.play("fade_in")
+
 
 func _on_RestartButton_pressed():
 	$AnimationPlayer.play("fade_out")
 
+
 func _on_QuitButton_pressed() -> void:
 	self.queue_free()
 	get_tree().quit()
+
 
 func _on_AnimationPlayer_animation_finished(anim_name: String) -> void:
 	if anim_name == "fade_out":

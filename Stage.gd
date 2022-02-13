@@ -10,6 +10,7 @@ const MIN_DISTANCE = 128*1.5
 const MIN_DISTANCE_FROM_CENTER = 128*1.5
 const WIGGLE_RANGE = 32
 
+
 func check_distance(p: Vector2, min_distance: float):
 	for box in mystery_boxes:
 		var d = p.distance_to(box.position)
@@ -17,10 +18,12 @@ func check_distance(p: Vector2, min_distance: float):
 			return false
 	return true
 
+
 func pick_box_position():
 	var radius = rand_range(0, 512)
 	var angle = rand_range(0, 2*PI)
 	return Vector2(radius * cos(angle), radius * sin(angle))
+
 
 func list_symbols():
 	var dir = Directory.new()
@@ -39,6 +42,7 @@ func list_symbols():
 		print("An error occurred while loading the symbols.")
 		return []
 
+
 func load_nkis():
 	var f = File.new()
 	f.open("res://assets/nkis.txt", File.READ)
@@ -46,6 +50,7 @@ func load_nkis():
 		nkis.append(f.get_line())
 	f.close()
 	nkis.shuffle()
+
 
 func _ready():
 	$HUD/Fader.show()
@@ -111,15 +116,18 @@ func _ready():
 	$TileMap.update_bitmask_region()
 	$HUD/Fader.fade_in()
 
+
 func _on_Robot_approach_box() -> void:
 	if OS.is_debug_build():
 		print("* Robot sees a box")
+
 
 func _on_Robot_leave_box() -> void:
 	if OS.is_debug_build():
 		print("* Robot leaves the box")
 
 	$HUD.hide_panel()
+
 
 func _on_Actor_is_kitten(is_kitten, what) -> void:
 	if OS.is_debug_build():

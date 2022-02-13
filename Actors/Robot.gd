@@ -12,7 +12,7 @@ var active_actor: Actor = null
 
 func _ready():
 	$LeaveTimer.set_wait_time(1)
-	pass
+
 
 func get_input():
 	rotation_direction = 0
@@ -24,19 +24,23 @@ func get_input():
 
 	$RobotSprite.playing = abs(v) > 0
 
+
 func _physics_process(delta: float) -> void:
 	get_input()
 	rotation += rotation_direction * angular_speed * delta
 	velocity = move_and_slide(velocity)
 
+
 func is_kitten():
 	emit_signal("is_kitten", false, "No, silly, I'm yourself!")
+
 
 func _process(_delta):
 	if Input.is_action_just_released("ask_kitten") and active_actor != null:
 		if OS.is_debug_build():
 			print("<robot> Hey, ", active_actor, "... are you kitten?")
 		active_actor.is_kitten()
+
 
 func _on_BoxDetector_body_entered(body: Actor) -> void:
 	if body == null or body == self:
@@ -50,10 +54,12 @@ func _on_BoxDetector_body_entered(body: Actor) -> void:
 	active_actor = body
 	body.is_kitten()
 
+
 func _on_BoxDetector_body_exited(body: Actor) -> void:
 	if body == null or body == self:
 		return
 	$LeaveTimer.start(1.0)
+
 
 func _on_LeaveTimer_timeout():
 	active_actor = null
