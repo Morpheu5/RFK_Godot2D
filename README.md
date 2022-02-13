@@ -1,6 +1,6 @@
 # RFK_Godot2D
 
-A Godot 2D port of Robot Finds Kitten
+A Godot 2D port of Robot Finds Kitten that you can [play online here](https://rfk.morpheu5.net/2d)!
 
 I wanted to learn Godot and I needed a game idea but I didn't want to think very hard, so I re-made [Robot Finds Kitten](http://robotfindskitten.org/).
 

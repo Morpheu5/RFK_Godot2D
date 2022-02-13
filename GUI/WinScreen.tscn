@@ -468,14 +468,13 @@ theme = ExtResource( 2 )
 position = Vector2( 365, -20.256 )
 scale = Vector2( 4, 4 )
 frames = SubResource( 25 )
-frame = 11
+frame = 8
 playing = true
 
 [node name="RobotWin" type="AnimatedSprite" parent="MarginContainer/CenterContainer/VBoxContainer/CenterContainer"]
 position = Vector2( 173, -76 )
 scale = Vector2( 4, 4 )
 frames = SubResource( 40 )
-frame = 11
 playing = true
 
 [node name="PanelContainer" type="PanelContainer" parent="MarginContainer/CenterContainer/VBoxContainer"]
