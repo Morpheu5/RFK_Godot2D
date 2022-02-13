@@ -9,6 +9,8 @@ var rotation_direction = 0
 
 var active_actor: Actor = null
 
+var are_we_playing = true
+
 
 func _ready():
 	$LeaveTimer.set_wait_time(1)
@@ -26,6 +28,9 @@ func get_input():
 
 
 func _physics_process(delta: float) -> void:
+	if !are_we_playing:
+		return
+	
 	get_input()
 	rotation += rotation_direction * angular_speed * delta
 	velocity = move_and_slide(velocity)

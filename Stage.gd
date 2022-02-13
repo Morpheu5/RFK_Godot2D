@@ -134,6 +134,7 @@ func _on_Actor_is_kitten(is_kitten, what) -> void:
 		print("<box> ", what)
 
 	if is_kitten:
+		$Robot.are_we_playing = false
 		self.add_child(WinScreen.instance())
 	else:
 		$HUD.show_panel(what)
