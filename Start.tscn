@@ -1,7 +1,8 @@
-[gd_scene load_steps=5 format=2]
+[gd_scene load_steps=6 format=2]
 
 [ext_resource path="res://GUI/default_theme.tres" type="Theme" id=1]
 [ext_resource path="res://Start.gd" type="Script" id=2]
+[ext_resource path="res://assets/animations/Fader.tscn" type="PackedScene" id=3]
 
 [sub_resource type="DynamicFontData" id=3]
 antialiased = false
@@ -73,4 +74,8 @@ margin_bottom = 85.0
 theme = ExtResource( 1 )
 text = "Play"
 
+[node name="Fader" parent="." instance=ExtResource( 3 )]
+visible = false
+
 [connection signal="pressed" from="PanelContainer/VBoxContainer/HBoxContainer/Button" to="." method="_on_Button_pressed"]
+[connection signal="fade_finished" from="Fader" to="." method="_on_Fader_fade_finished"]

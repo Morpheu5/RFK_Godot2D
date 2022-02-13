@@ -54,6 +54,7 @@ func load_nkis():
 	nkis.shuffle()
 
 func _ready():
+	$HUD/Fader.show()
 	$HUD/PanelContainer.modulate = Color(1,1,1,0)
 	randomize()
 	var Global = get_node("/root/Global")
@@ -115,6 +116,7 @@ func _ready():
 			$TileMap.set_cell(x, y, 0)
 	# Don't forget to give them a shake otherwise they won't bind correctly.
 	$TileMap.update_bitmask_region()
+	$HUD/Fader.fade_in()
 
 func _on_Robot_approach_box() -> void:
 	if OS.is_debug_build():
@@ -131,6 +133,11 @@ func _on_Actor_is_kitten(is_kitten, what_is) -> void:
 		print("<box> ", what_is)
 
 	if is_kitten:
-		get_tree().change_scene("res://GUI/WinScreen.tscn")
+		$HUD/Fader.fade_out()
 	else:
 		$HUD.show_panel(what_is)
+
+
+func _on_Fader_fade_finished(anim_name: String) -> void:
+	if anim_name == "fade_out":
+		get_tree().change_scene("res://GUI/WinScreen.tscn")

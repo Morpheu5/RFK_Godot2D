@@ -41,7 +41,7 @@ func _process(_delta):
 		active_actor.is_kitten()
 
 func _on_BoxDetector_body_entered(body: Actor) -> void:
-	if body == self:
+	if body == null or body == self:
 		return
 		
 	if OS.is_debug_build():
@@ -53,7 +53,7 @@ func _on_BoxDetector_body_entered(body: Actor) -> void:
 	emit_signal("see_box")
 
 func _on_BoxDetector_body_exited(body: Actor) -> void:
-	if body == self:
+	if body == null or body == self:
 		return
 	leave_timer.start(1.0)
 
