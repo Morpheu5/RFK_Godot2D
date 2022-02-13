@@ -3,6 +3,8 @@ extends CanvasLayer
 
 func _ready():
 	$AnimationPlayer.play("fade_in")
+	if OS.has_feature("web"):
+		$MarginContainer/CenterContainer/VBoxContainer/HBoxContainer/QuitButton.hide()
 
 
 func _on_RestartButton_pressed():
