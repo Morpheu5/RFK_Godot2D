@@ -11,3 +11,5 @@ export_presets.cfg
 # Mono-specific ignores
 data_*/
 .mono/
+build
+
