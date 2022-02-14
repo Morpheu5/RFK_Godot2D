@@ -20,9 +20,12 @@ func get_input():
 	rotation_direction = 0
 	velocity = Vector2.ZERO
 	
-	rotation_direction = Input.get_action_strength("turn_right") - Input.get_action_strength("turn_left")
 	var v = Input.get_action_strength("move_backward") - Input.get_action_strength("move_forward")
 	velocity = transform.y * speed * v
+	if v == 0:
+		rotation_direction = (Input.get_action_strength("turn_right") - Input.get_action_strength("turn_left"))
+	else:
+		rotation_direction = sign(-v) * (Input.get_action_strength("turn_right") - Input.get_action_strength("turn_left"))
 
 	$RobotSprite.playing = abs(v) > 0
 
