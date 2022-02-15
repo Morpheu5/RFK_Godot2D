@@ -1,10 +1,18 @@
-[gd_scene load_steps=6 format=2]
+[gd_scene load_steps=10 format=2]
 
 [ext_resource path="res://Actors/Robot.tscn" type="PackedScene" id=1]
 [ext_resource path="res://assets/sprites/TileSet.tres" type="TileSet" id=2]
 [ext_resource path="res://GUI/HUD.tscn" type="PackedScene" id=3]
 [ext_resource path="res://Stage.gd" type="Script" id=4]
 [ext_resource path="res://assets/animations/Fader.tscn" type="PackedScene" id=5]
+[ext_resource path="res://assets/sprites/throttle_bg.png" type="Texture" id=6]
+[ext_resource path="res://assets/sprites/steering_bg.png" type="Texture" id=7]
+
+[sub_resource type="RectangleShape2D" id=1]
+extents = Vector2( 32, 64 )
+
+[sub_resource type="RectangleShape2D" id=2]
+extents = Vector2( 64, 32 )
 
 [node name="Stage" type="Node2D"]
 script = ExtResource( 4 )
@@ -37,6 +45,37 @@ editor_draw_drag_margin = true
 visible = false
 size_flags_horizontal = 3
 size_flags_vertical = 3
+
+[node name="CanvasLayer" type="CanvasLayer" parent="."]
+
+[node name="MarginContainer" type="MarginContainer" parent="CanvasLayer"]
+anchor_top = 0.5
+anchor_right = 1.0
+anchor_bottom = 0.5
+size_flags_horizontal = 3
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="VConMarginContainer" type="MarginContainer" parent="CanvasLayer/MarginContainer"]
+margin_right = 1024.0
+
+[node name="VControl" type="TouchScreenButton" parent="CanvasLayer/MarginContainer/VConMarginContainer"]
+position = Vector2( 16, 0 )
+normal = ExtResource( 6 )
+shape = SubResource( 1 )
+
+[node name="HConMarginContainer" type="MarginContainer" parent="CanvasLayer/MarginContainer"]
+anchor_right = 1.0
+margin_left = 896.0
+margin_top = 32.0
+margin_right = 736.0
+margin_bottom = 32.0
+
+[node name="HControl" type="TouchScreenButton" parent="CanvasLayer/MarginContainer/HConMarginContainer"]
+position = Vector2( -16, 0 )
+normal = ExtResource( 7 )
+shape = SubResource( 2 )
 
 [connection signal="leave_box" from="Robot" to="." method="_on_Robot_leave_box"]
 [connection signal="see_box" from="Robot" to="." method="_on_Robot_approach_box"]
