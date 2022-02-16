@@ -43,13 +43,6 @@ func is_kitten():
 	emit_signal("is_kitten", false, "No, silly, I'm yourself!")
 
 
-func _process(_delta):
-	if Input.is_action_just_released("ask_kitten") and active_actor != null:
-		if OS.is_debug_build():
-			print("<robot> Hey, ", active_actor, "... are you kitten?")
-		active_actor.is_kitten()
-
-
 func _on_BoxDetector_body_entered(body: Actor) -> void:
 	if body == null or body == self:
 		return
