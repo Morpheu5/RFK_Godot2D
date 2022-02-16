@@ -52,7 +52,18 @@ func load_nkis():
 	nkis.shuffle()
 
 
+func toggle_touchcontrols(state: bool) -> void:
+	if state:
+		$TouchControls/VStick.show()
+		$TouchControls/HStick.show()
+	else:
+		$TouchControls/VStick.hide()
+		$TouchControls/HStick.hide()
+
+
 func _ready():
+	toggle_touchcontrols(OS.has_touchscreen_ui_hint())
+	
 	$HUD/Fader.show()
 	$HUD/PanelContainer.modulate = Color(1,1,1,0)
 	randomize()

@@ -54,7 +54,7 @@ margin_bottom = -192.0
 action_up = "move_forward"
 action_dn = "move_backward"
 
-[node name="VStick2" parent="TouchControls" instance=ExtResource( 7 )]
+[node name="HStick" parent="TouchControls" instance=ExtResource( 7 )]
 anchor_left = 1.0
 anchor_top = 1.0
 anchor_right = 1.0
@@ -64,7 +64,7 @@ margin_top = -192.0
 margin_right = -96.0
 margin_bottom = -192.0
 
-[node name="VStickButton" parent="TouchControls/VStick2/VStickBase" index="0"]
+[node name="VStickButton" parent="TouchControls/HStick/VStickBase" index="0"]
 action_left = "turn_left"
 action_right = "turn_right"
 
@@ -74,4 +74,4 @@ action_right = "turn_right"
 
 [editable path="HUD"]
 [editable path="TouchControls/VStick"]
-[editable path="TouchControls/VStick2"]
+[editable path="TouchControls/HStick"]
