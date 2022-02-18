@@ -1,12 +1,11 @@
-[gd_scene load_steps=8 format=2]
+[gd_scene load_steps=7 format=2]
 
 [ext_resource path="res://Actors/Robot.tscn" type="PackedScene" id=1]
 [ext_resource path="res://assets/sprites/TileSet.tres" type="TileSet" id=2]
 [ext_resource path="res://GUI/HUD.tscn" type="PackedScene" id=3]
 [ext_resource path="res://Stage.gd" type="Script" id=4]
 [ext_resource path="res://assets/animations/Fader.tscn" type="PackedScene" id=5]
-[ext_resource path="res://GUI/VStick.tscn" type="PackedScene" id=6]
-[ext_resource path="res://GUI/HStick.tscn" type="PackedScene" id=7]
+[ext_resource path="res://addons/joystick/virtual_joystick.tscn" type="PackedScene" id=6]
 
 [node name="Stage" type="Node2D"]
 script = ExtResource( 4 )
@@ -42,36 +41,35 @@ size_flags_vertical = 3
 
 [node name="TouchControls" type="CanvasLayer" parent="."]
 
-[node name="VStick" parent="TouchControls" instance=ExtResource( 6 )]
+[node name="Joystick" parent="TouchControls" instance=ExtResource( 6 )]
 anchor_top = 1.0
 anchor_bottom = 1.0
 margin_left = 64.0
-margin_top = -192.0
-margin_right = 64.0
-margin_bottom = -192.0
-
-[node name="VStickButton" parent="TouchControls/VStick/VStickBase" index="0"]
-action_up = "move_forward"
-action_dn = "move_backward"
-
-[node name="HStick" parent="TouchControls" instance=ExtResource( 7 )]
-anchor_left = 1.0
-anchor_top = 1.0
-anchor_right = 1.0
-anchor_bottom = 1.0
-margin_left = -96.0
-margin_top = -192.0
-margin_right = -96.0
-margin_bottom = -192.0
-
-[node name="VStickButton" parent="TouchControls/HStick/VStickBase" index="0"]
+margin_top = -344.0
+margin_right = 192.0
+margin_bottom = -216.0
 action_left = "turn_left"
 action_right = "turn_right"
+action_up = "move_forward"
+action_down = "move_backward"
+
+[node name="Base" parent="TouchControls/Joystick" index="0"]
+margin_left = -64.0
+margin_top = -64.0
+margin_right = 64.0
+margin_bottom = 64.0
+rect_pivot_offset = Vector2( 64, 64 )
+
+[node name="Tip" parent="TouchControls/Joystick/Base" index="0"]
+margin_left = -32.0
+margin_top = -32.0
+margin_right = 32.0
+margin_bottom = 32.0
+rect_pivot_offset = Vector2( 32, 32 )
 
 [connection signal="leave_box" from="Robot" to="." method="_on_Robot_leave_box"]
 [connection signal="see_box" from="Robot" to="." method="_on_Robot_approach_box"]
 [connection signal="fade_finished" from="HUD/Fader" to="." method="_on_Fader_fade_finished"]
 
 [editable path="HUD"]
-[editable path="TouchControls/VStick"]
-[editable path="TouchControls/HStick"]
+[editable path="TouchControls/Joystick"]

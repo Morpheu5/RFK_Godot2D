@@ -23,11 +23,17 @@ _global_script_classes=[ {
 "class": "MysteryBox",
 "language": "GDScript",
 "path": "res://Actors/MysteryBox.gd"
+}, {
+"base": "Reference",
+"class": "VirtualJoystick",
+"language": "GDScript",
+"path": "res://addons/joystick/virtual_joystick.gd"
 } ]
 _global_script_class_icons={
 "Actor": "",
 "Kitten": "",
-"MysteryBox": ""
+"MysteryBox": "",
+"VirtualJoystick": ""
 }
 
 [application]

@@ -54,11 +54,9 @@ func load_nkis():
 
 func toggle_touchcontrols(state: bool) -> void:
 	if state:
-		$TouchControls/VStick.show()
-		$TouchControls/HStick.show()
+		$TouchControls/Joystick.show()
 	else:
-		$TouchControls/VStick.hide()
-		$TouchControls/HStick.hide()
+		$TouchControls/Joystick.hide()
 
 
 func _ready():

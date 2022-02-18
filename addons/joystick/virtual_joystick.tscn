@@ -1,0 +1,56 @@
+[gd_scene load_steps=4 format=2]
+
+[ext_resource path="res://addons/joystick/virtual_joystick.gd" type="Script" id=3]
+
+[sub_resource type="StreamTexture" id=1]
+load_path = "res://.import/joystick_base.png-54ae2562eb600f82a7c58e7a8eed0c33.stex"
+
+[sub_resource type="StreamTexture" id=2]
+load_path = "res://.import/mysterybox.png-2648d046f8cd53fbbfaaee417d60e666.stex"
+
+[node name="Virtual joystick" type="Control"]
+modulate = Color( 1, 1, 1, 0.509804 )
+script = ExtResource( 3 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Base" type="TextureRect" parent="."]
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+margin_left = -100.0
+margin_top = -100.0
+margin_right = 100.0
+margin_bottom = 100.0
+grow_horizontal = 2
+grow_vertical = 2
+rect_pivot_offset = Vector2( 100, 100 )
+size_flags_horizontal = 4
+size_flags_vertical = 4
+texture = SubResource( 1 )
+stretch_mode = 6
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Tip" type="TextureRect" parent="Base"]
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+margin_left = -50.0
+margin_top = -50.0
+margin_right = 50.0
+margin_bottom = 50.0
+grow_horizontal = 2
+grow_vertical = 2
+rect_pivot_offset = Vector2( 50, 50 )
+size_flags_horizontal = 4
+size_flags_vertical = 4
+texture = SubResource( 2 )
+stretch_mode = 6
+__meta__ = {
+"_edit_use_anchors_": false
+}
