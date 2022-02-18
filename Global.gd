@@ -38,7 +38,7 @@ func _ready():
 	symbols = [
 		preload("res://assets/symbols/char_033.png"),
 		preload("res://assets/symbols/char_034.png"),
-		preload("res://assets/symbols/char_035.png"),
+		# preload("res://assets/symbols/char_035.png"),  # This is supposed to be Robot
 		preload("res://assets/symbols/char_036.png"),
 		preload("res://assets/symbols/char_037.png"),
 		preload("res://assets/symbols/char_038.png"),
@@ -95,10 +95,10 @@ func _ready():
 		preload("res://assets/symbols/char_089.png"),
 		preload("res://assets/symbols/char_090.png"),
 		preload("res://assets/symbols/char_091.png"),
-		preload("res://assets/symbols/char_092.png"),
+		# preload("res://assets/symbols/char_092.png"),  # [space]
 		preload("res://assets/symbols/char_093.png"),
 		preload("res://assets/symbols/char_094.png"),
-		preload("res://assets/symbols/char_095.png"),
+		# preload("res://assets/symbols/char_095.png"),  # _
 		preload("res://assets/symbols/char_096.png"),
 		preload("res://assets/symbols/char_097.png"),
 		preload("res://assets/symbols/char_098.png"),

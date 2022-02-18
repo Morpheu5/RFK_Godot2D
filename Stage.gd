@@ -67,6 +67,7 @@ func _ready():
 	randomize()
 	var Global = get_node("/root/Global")
 	symbols = Global.symbols
+	symbols.shuffle()
 	
 	# So, loading PNGs on the fly is not ok, but a random txt file gets bundled
 	# no questions asked? Ok, then...
