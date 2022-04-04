@@ -1,7 +1,8 @@
-[gd_scene load_steps=10 format=2]
+[gd_scene load_steps=11 format=2]
 
 [ext_resource path="res://assets/sprites/robot_top.png" type="Texture" id=1]
 [ext_resource path="res://Actors/Robot.gd" type="Script" id=2]
+[ext_resource path="res://assets/audio/engine.ogg" type="AudioStream" id=3]
 
 [sub_resource type="AtlasTexture" id=6]
 atlas = ExtResource( 1 )
@@ -52,6 +53,15 @@ shape = SubResource( 5 )
 
 [node name="LeaveTimer" type="Timer" parent="."]
 one_shot = true
+
+[node name="EngineNoise" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource( 3 )
+volume_db = -6.0
+autoplay = true
+
+[node name="Thumper" type="AudioStreamPlayer2D" parent="."]
+
+[node name="EngineFader" type="Tween" parent="."]
 
 [connection signal="body_entered" from="RobotSprite/BoxDetector" to="." method="_on_BoxDetector_body_entered"]
 [connection signal="body_exited" from="RobotSprite/BoxDetector" to="." method="_on_BoxDetector_body_exited"]

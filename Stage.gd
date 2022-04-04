@@ -145,6 +145,7 @@ func _on_Actor_is_kitten(is_kitten, what) -> void:
 
 	if is_kitten:
 		$Robot.are_we_playing = false
+		$Robot.fade_engine_noise()
 		self.add_child(WinScreen.instance())
 	else:
 		$HUD.show_panel(what)

@@ -1,9 +1,11 @@
-[gd_scene load_steps=48 format=2]
+[gd_scene load_steps=50 format=2]
 
 [ext_resource path="res://GUI/WinScreen.gd" type="Script" id=1]
 [ext_resource path="res://GUI/default_theme.tres" type="Theme" id=2]
 [ext_resource path="res://assets/sprites/kitten2.png" type="Texture" id=3]
 [ext_resource path="res://assets/sprites/robot_win.png" type="Texture" id=4]
+[ext_resource path="res://assets/audio/kitten.ogg" type="AudioStream" id=5]
+[ext_resource path="res://assets/audio/purr.ogg" type="AudioStream" id=6]
 
 [sub_resource type="AtlasTexture" id=1]
 atlas = ExtResource( 3 )
@@ -468,7 +470,7 @@ theme = ExtResource( 2 )
 position = Vector2( 365, -20.256 )
 scale = Vector2( 4, 4 )
 frames = SubResource( 25 )
-frame = 5
+frame = 1
 playing = true
 
 [node name="RobotWin" type="AnimatedSprite" parent="MarginContainer/CenterContainer/VBoxContainer/CenterContainer"]
@@ -528,6 +530,14 @@ text = "QUIT"
 anims/RESET = SubResource( 41 )
 anims/fade_in = SubResource( 42 )
 anims/fade_out = SubResource( 43 )
+
+[node name="Meow" type="AudioStreamPlayer" parent="."]
+stream = ExtResource( 5 )
+autoplay = true
+
+[node name="Purr" type="AudioStreamPlayer" parent="."]
+stream = ExtResource( 6 )
+autoplay = true
 
 [connection signal="pressed" from="MarginContainer/CenterContainer/VBoxContainer/HBoxContainer/RestartButton" to="." method="_on_RestartButton_pressed"]
 [connection signal="pressed" from="MarginContainer/CenterContainer/VBoxContainer/HBoxContainer/QuitButton" to="." method="_on_QuitButton_pressed"]

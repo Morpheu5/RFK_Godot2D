@@ -1,0 +1,15 @@
+[remap]
+
+importer="ogg_vorbis"
+type="AudioStreamOGGVorbis"
+path="res://.import/thump-04.ogg-a244768ab58ba68173cfd87710f3a544.oggstr"
+
+[deps]
+
+source_file="res://assets/audio/thump-04.ogg"
+dest_files=[ "res://.import/thump-04.ogg-a244768ab58ba68173cfd87710f3a544.oggstr" ]
+
+[params]
+
+loop=false
+loop_offset=0
