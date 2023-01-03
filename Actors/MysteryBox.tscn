@@ -4,6 +4,7 @@
 [ext_resource path="res://Actors/MysteryBox.gd" type="Script" id=2]
 
 [node name="MysteryBox" type="KinematicBody2D"]
+collision_layer = 2
 script = ExtResource( 2 )
 
 [node name="BaseSprite" type="Sprite" parent="."]

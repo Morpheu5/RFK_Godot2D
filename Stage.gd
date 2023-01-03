@@ -60,11 +60,12 @@ func toggle_touchcontrols(state: bool) -> void:
 
 
 func _ready():
+	randomize()
+
 	toggle_touchcontrols(OS.has_touchscreen_ui_hint())
 	
 	$HUD/Fader.show()
 	$HUD/PanelContainer.modulate = Color(1,1,1,0)
-	randomize()
 	var Global = get_node("/root/Global")
 	symbols = Global.symbols
 	symbols.shuffle()
@@ -75,6 +76,21 @@ func _ready():
 	
 	var box_scene = preload("res://Actors/MysteryBox.tscn")
 	var center = Vector2(512, 300)
+	
+	# MAKE MYSTERY BOXES!
+	var mystery_boxes_amt = 32
+	for i in range(mystery_boxes_amt):
+		var position = pick_box_position() + center
+		while !check_distance(position, MIN_DISTANCE) || (position.distance_to(center) < MIN_DISTANCE_FROM_CENTER):
+			position += Vector2(rand_range(-1, 1), rand_range(-1, 1)) * rand_range(WIGGLE_RANGE/2.0, WIGGLE_RANGE)
+		var box = box_scene.instance()
+		box.get_node("BaseSprite").modulate = Color(Global.colors[i % Global.colors.size()])
+		box.get_node("SymbolSprite").texture = symbols[i % symbols.size()]
+		box.what = nkis[i % nkis.size()]
+		box.connect("is_kitten", self, "_on_Actor_is_kitten")
+		mystery_boxes.append(box)
+		box.position = position
+		$Boxes.call_deferred("add_child", box)
 
 	# MAKE KITTEN!
 	var kitten = box_scene.instance()
@@ -85,24 +101,9 @@ func _ready():
 	mystery_boxes.append(kitten)
 	var kitten_position = pick_box_position() + center
 	while !check_distance(kitten_position, MIN_DISTANCE) || (kitten_position.distance_to(center) < MIN_DISTANCE_FROM_CENTER):
-		kitten_position += Vector2(rand_range(-1, 1), rand_range(-1, 1)) * rand_range(WIGGLE_RANGE/2, WIGGLE_RANGE)
-	kitten.position = kitten_position + center
+		kitten_position += Vector2(rand_range(-1, 1), rand_range(-1, 1)) * rand_range(WIGGLE_RANGE/2.0, WIGGLE_RANGE)
+	kitten.position = kitten_position
 	$Boxes.call_deferred("add_child", kitten)
-
-	# MAKE MYSTERY BOXES!
-	var mystery_boxes_amt = 32
-	for i in range(mystery_boxes_amt):
-		var position = pick_box_position() + center
-		while !check_distance(position, MIN_DISTANCE) || (position.distance_to(center) < MIN_DISTANCE_FROM_CENTER):
-			position += Vector2(rand_range(-1, 1), rand_range(-1, 1)) * rand_range(WIGGLE_RANGE/2, WIGGLE_RANGE)
-		var box = box_scene.instance()
-		box.get_node("BaseSprite").modulate = Color(Global.colors[i % Global.colors.size()])
-		box.get_node("SymbolSprite").texture = symbols[i % symbols.size()]
-		box.what = nkis[i % nkis.size()]
-		box.connect("is_kitten", self, "_on_Actor_is_kitten")
-		mystery_boxes.append(box)
-		box.position = position
-		$Boxes.call_deferred("add_child", box)
 	
 	# Gotta do that bounding box dance here...
 	var min_x = INF
