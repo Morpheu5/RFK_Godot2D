@@ -69,7 +69,6 @@ rect_pivot_offset = Vector2( 32, 32 )
 
 [connection signal="leave_box" from="Robot" to="." method="_on_Robot_leave_box"]
 [connection signal="see_box" from="Robot" to="." method="_on_Robot_approach_box"]
-[connection signal="fade_finished" from="HUD/Fader" to="." method="_on_Fader_fade_finished"]
 
 [editable path="HUD"]
 [editable path="TouchControls/Joystick"]
